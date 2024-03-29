@@ -37,14 +37,16 @@ app.get('/', (req, res) => {
         </section>
         <section>
           <ul id="goals">
-          ${courseGoals.map(
-            (goal, index) => `
+          ${courseGoals
+            .map(
+              (goal, index) => `
             <li id="goal-${index}">
               <span>${goal}</span>
               <button>Remove</button>
             </li>
           `
-          )}
+            )
+            .join('')}
           </ul>
         </section>
       </main>
@@ -54,7 +56,7 @@ app.get('/', (req, res) => {
 });
 
 app.post('/add-goal', (req, res) => {
-  courseGoals.push(req.body.goal);
+  courseGoals.unshift(req.body.goal);
   res.redirect('/');
 });
 
