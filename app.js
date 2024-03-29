@@ -22,7 +22,12 @@ app.get('/', (req, res) => {
       <main>
         <h1>Manage your course goals</h1>
         <section>
-          <form id="goal-form">
+          <form 
+            hx-post="/add-goal"
+            hx-target="#goals"
+            hx-swap="outerHTML" 
+            hx-select="#goals"
+            id="goal-form">
             <div>
               <label htmlFor="goal">Goal</label>
               <input type="text" id="goal" name="goal" />
