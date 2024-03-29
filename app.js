@@ -24,7 +24,7 @@ app.get('/', (req, res) => {
         <section>
           <form 
             id="goal-form"
-            hx-post="/add-goal"
+            hx-post="/goals"
             hx-target="#goals"
             hx-swap="beforeend" >
             <div>
@@ -41,7 +41,7 @@ app.get('/', (req, res) => {
               (goal, index) => `
             <li id="goal-${index}">
               <span>${goal}</span>
-              <button>Remove</button>
+              <button hx-delete=">Remove</button>
             </li>
           `
             )
@@ -54,7 +54,7 @@ app.get('/', (req, res) => {
   `);
 });
 
-app.post('/add-goal', (req, res) => {
+app.post('/goals', (req, res) => {
   courseGoals.unshift(req.body.goal);
   res.send(`
     <li id="goal-${courseGoals.indexOf(req.body.goal)}">
