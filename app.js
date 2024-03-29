@@ -23,10 +23,10 @@ app.get('/', (req, res) => {
         <h1>Manage your course goals</h1>
         <section>
           <form 
-            id="goal-form"
-            hx-post="/goals"
-            hx-target="#goals"
-            hx-swap="beforeend">
+              id="goal-form"
+              hx-post="/goals"
+              hx-target="#goals"
+              hx-swap="beforeend">
             <div>
               <label htmlFor="goal">Goal</label>
               <input type="text" id="goal" name="goal" />
@@ -42,11 +42,10 @@ app.get('/', (req, res) => {
             <li id="goal-${index}">
               <span>${goal}</span>
               <button 
-                hx-delete="/goals/${index}" 
-                hx-target="#goal-${index}"
-                hx-swap="outerHTML"
-                >
-                  Remove
+                  hx-delete="/goals/${index}" 
+                  hx-target="#goal-${index}"
+                  hx-swap="outerHTML">
+                Remove
               </button>
             </li>
           `
@@ -61,23 +60,25 @@ app.get('/', (req, res) => {
 });
 
 app.post('/goals', (req, res) => {
-  courseGoals.push(req.body.goal);
-  const index = courseGoals.indexOf(req.body.goal);
+  const goalText = req.body.goal;
+  const id = new Date().now();
+  courseGoals.push({ goal: goalText, id: id });
+
   res.send(`
-    <li id="goal-${index}">
-      <span>${req.body.goal}</span>
+    <li id="goal-${id}">
+      <span>${goalText}</span>
       <button
-        hx-delete="/goals/${index}" 
-        hx-target="#goal-${index}"
-        hx-swap="outerHTML"
-        >
-          Remove
-        </button>
+          hx-delete="/goals/${id}" 
+          hx-target="#goal-${id}"
+          hx-swap="outerHTML">
+        Remove
+      </button>
     </li>`);
 });
 
-app.delete('/goals/:index', (req, res) => {
-  const index = req.params.index;
+app.delete('/goals/:id', (req, res) => {
+  const id = req.params.id;
+  const index = courseGoals.findIndex(goal => goal.id === id);
   courseGoals.splice(index, 1);
   res.send();
 });
