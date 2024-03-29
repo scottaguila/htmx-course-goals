@@ -53,4 +53,9 @@ app.get('/', (req, res) => {
   `);
 });
 
+app.post('/add-goal', (req, res) => {
+  courseGoals.push(req.body.goal);
+  res.redirect('/');
+});
+
 app.listen(3000);
