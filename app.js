@@ -61,7 +61,7 @@ app.get('/', (req, res) => {
 
 app.post('/goals', (req, res) => {
   const goalText = req.body.goal;
-  const id = new Date().now();
+  const id = new Date().now().toString();
   courseGoals.push({ goal: goalText, id: id });
 
   res.send(`
