@@ -38,12 +38,12 @@ app.get('/', (req, res) => {
           <ul id="goals">
           ${courseGoals
             .map(
-              (goal, index) => `
-            <li id="goal-${index}">
-              <span>${goal}</span>
+              goal => `
+            <li id="goal-${goal.id}">
+              <span>${goal.text}</span>
               <button 
-                  hx-delete="/goals/${index}" 
-                  hx-target="#goal-${index}"
+                  hx-delete="/goals/${goal.id}" 
+                  hx-target="#goal-${goal.id}"
                   hx-swap="outerHTML">
                 Remove
               </button>
