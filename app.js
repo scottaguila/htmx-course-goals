@@ -61,8 +61,8 @@ app.get('/', (req, res) => {
 
 app.post('/goals', (req, res) => {
   const goalText = req.body.goal;
-  const id = new Date().now().toString();
-  courseGoals.push({ goal: goalText, id: id });
+  const id = new Date().getTime().toString();
+  courseGoals.push({ text: goalText, id: id });
 
   res.send(`
     <li id="goal-${id}">
