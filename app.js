@@ -43,7 +43,7 @@ app.get('/', (req, res) => {
               <span>${goal.text}</span>
               <button 
                   hx-delete="/goals/${goal.id}" 
-                  hx-target="#goal-${goal.id}"
+                  hx-target="#goal-${goal.id}">
                 Remove
               </button>
             </li>
@@ -68,7 +68,7 @@ app.post('/goals', (req, res) => {
       <span>${goalText}</span>
       <button
           hx-delete="/goals/${id}" 
-          hx-target="#goal-${id}"
+          hx-target="#goal-${id}">
         Remove
       </button>
     </li>`);
