@@ -48,10 +48,13 @@ app.get('/', (req, res) => {
           </form>
         </section>
         <section>
-          <ul id="goals" hx-swap="outerHTML">
-          ${courseGoals
-            .map(goal => renderGoalListItem(goal.id, goal.text))
-            .join('')}
+          <ul 
+            id="goals" 
+            hx-swap="outerHTML" 
+            hx-confirm="Are you sure?">
+            ${courseGoals
+              .map(goal => renderGoalListItem(goal.id, goal.text))
+              .join('')}
           </ul>
         </section>
       </main>
