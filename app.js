@@ -51,7 +51,6 @@ app.get('/', (req, res) => {
           <ul 
             id="goals" 
             hx-swap="outerHTML" 
-            hx-confirm="Are you sure?">
             ${courseGoals
               .map(goal => renderGoalListItem(goal.id, goal.text))
               .join('')}
