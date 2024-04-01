@@ -8,7 +8,8 @@ function renderGoalListItem(id, text) {
       <span>${text}</span>
       <button 
         hx-delete="/goals/${id}" 
-        hx-target="closest li">
+        hx-target="closest li"
+        hx-confirm="Are you sure?">
           Remove
       </button>
     </li>
